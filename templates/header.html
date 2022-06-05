@@ -7,7 +7,7 @@
             ><span class="fa fa-phone mr-1"></span> +212 1234 567</a
           >
           <a href="#"
-            ><span class="fa fa-paper-plane mr-1"></span> monemail@email.com</a
+            ><span class="fa fa-paper-plane mr-1"></span> smart-view@email.com</a
           >
         </p>
       </div>
@@ -38,7 +38,11 @@
         </div>
         <div class="reg">
           <p class="mb-0">
-            <a href="#" class="mr-2">Sign Up</a> <a href="#">Log In</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'edit-profile'  %}" class="mr-2"> {{ user.last_name }} </a> <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'register' %}" class="mr-2">Sign Up</a> <a href="{% url 'login' %}">Log In</a>
+            {% endif %}
           </p>
         </div>
       </div>
@@ -69,52 +73,28 @@
       >
         <span class="flaticon-shopping-bag"></span>
         <div class="d-flex justify-content-center align-items-center">
-          <small>3</small>
+          <small> {{cart_count}}</small>
         </div>
       </a>
       <div class="dropdown-menu dropdown-menu-right">
-        <div class="dropdown-item d-flex align-items-start" href="">
-          <div
-            class="img"
-            style="background-image: url(images/prd-1.png)"
-          ></div>
-          <div class="text pl-3">
-            <h4>Bacardi 151</h4>
-            <p class="mb-0">
-              <a href="#" class="price">$25.99</a
-              ><span class="quantity ml-3">Quantity: 01</span>
-            </p>
-          </div>
-        </div>
+        {% for cart_item in cart_items %}
         <div class="dropdown-item d-flex align-items-start" href="#">
           <div
             class="img"
-            style="background-image: url(images/prd-1.png)"
+            style="background-image: url({{ cart_item.product.image.url }})"
           ></div>
           <div class="text pl-3">
-            <h4>Bacardi 151</h4>
+            <h4>{{ cart_item.product.name }}</h4>
             <p class="mb-0">
-              <a href="#" class="price">$25.99</a
-              ><span class="quantity ml-3">Quantity: 01</span>
+              <a href="#" class="price"> ${{ cart_item.sub_total }} </a
+              ><span class="quantity ml-3">Quantity: {{ cart_item.quantity }}</span>
             </p>
           </div>
         </div>
-        <div class="dropdown-item d-flex align-items-start" href="#">
-          <div
-            class="img"
-            style="background-image: url(images/prd-3.png)"
-          ></div>
-          <div class="text pl-3">
-            <h4>Citadelle</h4>
-            <p class="mb-0">
-              <a href="#" class="price">$22.50</a
-              ><span class="quantity ml-3">Quantity: 01</span>
-            </p>
-          </div>
-        </div>
+        {% endfor %}
         <a
           class="dropdown-item text-center btn-link d-block w-100"
-          href="cart.html"
+          href="{% url 'cart' %}"
         >
           View All
           <span class="ion-ios-arrow-round-forward"></span>
@@ -137,33 +117,16 @@
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a href="index.html" class="nav-link">Home</a>
+          <a  href="{% url 'home' %}" class="nav-link">Home</a>
         </li>
         <li class="nav-item">
           <a href="{% url 'store' %}" class="nav-link">Shop now</a>
         </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="dropdown04"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            >Products</a
-          >
-          <div class="dropdown-menu" aria-labelledby="dropdown04">
-            <a class="dropdown-item" href="product.html">Products</a>
-            <a class="dropdown-item" href="product-single.html"
-              >Single Product</a
-            >
-            <a class="dropdown-item" href="cart.html">Cart</a>
-            <a class="dropdown-item" href="checkout.html">Checkout</a>
-          </div>
-        </li>
-        <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
         <li class="nav-item">
-          <a href="contact.html" class="nav-link">Contact</a>
+          <a  href="{% url 'about' %}" class="nav-link"> Tutorial </a>
+        </li>
+        <li class="nav-item">
+          <a  href="{% url 'contact' %}" class="nav-link"> Contact </a>
         </li>
       </ul>
     </div>

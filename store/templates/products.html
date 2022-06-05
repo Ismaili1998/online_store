@@ -7,15 +7,21 @@
 				<div class="img d-flex align-items-center justify-content-center" style="background-image: url({{ product.image.url }});">
 					<div class="desc">
 						<p class="meta-prod d-flex">
-							<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+							{% if product.stock > 0 %}
+							<a href ="{% url 'add-cart' product.id  %}" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+							{% endif %}
 							<a href= "{{ product.get_url }}" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
 						</p>
 					</div>
 				</div>
 				<div class="text text-center">
-					<span class="category"> {{ product.slug }} </span>
+					<!--<span class="category"> {{ product.category.name }} </span>-->
 					<h2> {{ product.name }} </h2>
-					<p class="mb-0"><span class="price"> {{ product.price }} </span></p>
+					<p class="mb-0"><strong class="price"> ${{ product.price }} </strong></p>
+					{% if product.stock > 0 %}
+					<a class="mb-0 btn btn-sm btn-dark btn-block" href ="{% url 'add-cart' product.id  %}"> By now </a>
+					{% endif %}
+					<a class="mb-0 btn btn-sm btn-dark btn-block" href ="{{ product.get_url }}"> Detail </a>
 				</div>
 			</div>
 		</div>

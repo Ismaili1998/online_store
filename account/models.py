@@ -43,31 +43,52 @@ class Manager(UserManager):
 
 
 
-class User(AbstractUser):
+class Account(AbstractUser):
 
-      first_name = models.CharField(max_length=50)
-      last_name = models.CharField(max_length=50)
-      username = models.CharField(max_length=50,unique=True)
-      email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    username = models.CharField(max_length=50,unique=True)
+    email = models.EmailField(unique=True)
+    phone_number    = models.CharField(max_length=50)
 
-      date_joined = models.DateField(auto_now_add=True)
-      last_login = models.DateField(auto_now=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    last_login = models.DateTimeField(auto_now=True)
 
-      is_admin = models.BooleanField(default=False)
-      is_staff = models.BooleanField(default=False)
-      is_active = models.BooleanField(default=False)
-      is_superadmin = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
+    is_superadmin = models.BooleanField(default=False)
 
-      USERNAME_FIELD = 'email'
-      REQUIRED_FIELDS = ['username','first_name','last_name']
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username','first_name','last_name']
 
-      objects = Manager()
+    objects = Manager()
 
-      def __str__(self):
-          return self.email
+    def __str__(self):
+        return self.email
 
-      def has_perm(self , perm, obj=None):
-          return self.is_admin
+    def has_perm(self, perm, obj=None):
+        return self.is_admin
 
-      def has_module_perms(self, add_label):
-           return True
+    def has_module_perms(self, add_label):
+        return True
+
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(Account, on_delete=models.CASCADE)
+    address_line_1 = models.CharField(blank=True, max_length=100)
+    address_line_2 = models.CharField(blank=True, max_length=100)
+    profile_picture = models.ImageField(blank=True, upload_to='userprofile')
+    city = models.CharField(blank=True, max_length=20)
+    state = models.CharField(blank=True, max_length=20)
+    country = models.CharField(blank=True, max_length=20)
+
+    def __str__(self):
+        return self.user.first_name
+
+    def full_address(self):
+        return f'{self.address_line_1} {self.address_line_2}'
+    

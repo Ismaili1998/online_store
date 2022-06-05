@@ -108,9 +108,9 @@
             <h4 class="text-danger"
             > Out of Stock</h4>
           {% else %}
-          <a href="cart.html" class="btn btn-primary py-3 px-5 mr-2"
+          <a href="{% url 'add-cart' product.id %}" class="btn btn-primary py-3 px-5 mr-2"
             >Add to Cart</a
-          ><a href="cart.html" class="btn btn-primary py-3 px-5">Buy now</a>
+          ><a href="{% url 'add-cart' product.id %}" class="btn btn-primary py-3 px-5">Buy now</a>
           {% endif %}
           
         </p>
@@ -170,15 +170,7 @@
             <div class="p-4">
               <h3 class="mb-4">IP-TV product</h3>
               <p>
-                On her way she met a copy. The copy warned the Little Blind
-                Text, that where it came from it would have been rewritten a
-                thousand times and everything that was left from its origin
-                would be the word "and" and the Little Blind Text should turn
-                around and return to its own, safe country. But nothing the copy
-                said could convince her and so it didn’t take long until a few
-                insidious Copy Writers ambushed her, made her drunk with Longe
-                and Parole and dragged her into their agency, where they abused
-                her for their.
+                {{ product.description}}
               </p>
             </div>
           </div>
@@ -190,17 +182,10 @@
             aria-labelledby="v-pills-day-2-tab"
           >
             <div class="p-4">
-              <h3 class="mb-4">Manufactured By Liquor Store</h3>
+              <h3 class="mb-4">Manufacturer</h3>
               <p>
-                On her way she met a copy. The copy warned the Little Blind
-                Text, that where it came from it would have been rewritten a
-                thousand times and everything that was left from its origin
-                would be the word "and" and the Little Blind Text should turn
-                around and return to its own, safe country. But nothing the copy
-                said could convince her and so it didn’t take long until a few
-                insidious Copy Writers ambushed her, made her drunk with Longe
-                and Parole and dragged her into their agency, where they abused
-                her for their.
+                SMART-VIEW est un Fournisseur d’abonnement IPTV de très haute qualité , notre playlist contient +75.000 chaînes et VOD.
+                Les serveurs SMART-VIEW sont performants, stables et toujours mises à jour, ce qui vous assurera une meilleure qualité lors du visionnage sans coupures..
               </p>
             </div>
           </div>
@@ -220,7 +205,7 @@
                   ></div>
                   <div class="desc">
                     <h4>
-                      <span class="text-left">Jacob Webb</span>
+                      <span class="text-left">Adam Wolf</span>
                       <span class="text-right">25 April 2020</span>
                     </h4>
                     <p class="star">
@@ -249,8 +234,8 @@
                   ></div>
                   <div class="desc">
                     <h4>
-                      <span class="text-left">Jacob Webb</span>
-                      <span class="text-right">25 April 2020</span>
+                      <span class="text-left">Sara Junifer</span>
+                      <span class="text-right">29 Mai 2020</span>
                     </h4>
                     <p class="star">
                       <span>
@@ -278,8 +263,8 @@
                   ></div>
                   <div class="desc">
                     <h4>
-                      <span class="text-left">Jacob Webb</span>
-                      <span class="text-right">25 April 2020</span>
+                      <span class="text-left">Jacob Adam</span>
+                      <span class="text-right">2 April 2021</span>
                     </h4>
                     <p class="star">
                       <span>

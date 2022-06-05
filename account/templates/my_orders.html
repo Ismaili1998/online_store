@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'images/bg_2.jpg' %});" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+    <div class="row no-gutters slider-text align-items-end justify-content-center">
+        <div class="col-md-9 ftco-animate mb-5 text-center">
+        <p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span>Orders<i class="fa fa-chevron-right"></i></span></p>
+        <h2 class="mb-0 bread"> Orders </h2>
+        </div>
+    </div>
+    </div>
+</section>
+<section class="section-conten padding-y bg">
+
+{% include 'alert.html' %}
+<div class="container">
+	<div class="row">
+	{% include 'dashboard_sidebar.html' %}
+	<main class="col-md-9">
+		<article class="card">
+		<header class="card-header">
+			<strong class="d-inline-block mr-3">Your order history</strong>
+
+		</header>
+		<div class="card-body">
+			<div class="row">
+			<div class="col-md-12">
+				<table class="table table-sm">
+				  <thead class="bg-danger">
+				    <tr>
+				      <th scope="col">Order #</th>
+				      <th scope="col">Billing Name</th>
+				      <th scope="col">Phone</th>
+				      <th scope="col">Order Total</th>
+							<th scope="col">Date</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+						{% for order in orders %}
+				    <tr>
+				      <th scope="row"><a href="{% url 'order-detail' order.order_number %}">{{order.order_number}}</a></th>
+				      <td>{{order.full_name}}</td>
+				      <td>{{order.phone}}</td>
+				      <td>${{order.order_total}}</td>
+					  <td>{{order.created_at}}</td>
+				    </tr>
+				{% endfor %}
+
+				  </tbody>
+				</table>
+			</div>
+
+			</div> <!-- row.// -->
+		</div> <!-- card-body .// -->
+
+		</article> <!-- order-group.// -->
+	</main>
+</div> <!-- row.// -->
+</div>
+
+
+</section>
+
+{% endblock %}

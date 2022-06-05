@@ -1,0 +1,118 @@
+{% extends 'main.html' %} 
+{% block content %} 
+{% load static %}
+
+<section
+  class="hero-wrap hero-wrap-2"
+  style="background-image: url({% static 'images/bg_2.jpg' %})"
+  data-stellar-background-ratio="0.5"
+>
+  <div class="overlay"></div>
+  <div class="container">
+    <div
+      class="row no-gutters slider-text align-items-end justify-content-center"
+    >
+      <div class="col-md-9 ftco-animate mb-5 text-center">
+        <p class="breadcrumbs mb-0">
+          <span class="mr-2"
+            ><a href="index.html">Home <i class="fa fa-chevron-right"></i></a
+          ></span>
+          <span>Free Trial<i class="fa fa-chevron-right"></i></span>
+        </p>
+        <h2 class="mb-0 bread">Free Trial</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section bg-light">
+  <!-- ============================ COMPONENT REGISTER   ================================= -->
+  <div class="card mx-auto" style="max-width: 920px; margin-top: 40px">
+    <article class="card-body">
+      {% include 'alert.html' %}
+      <header class="mb-4"><h4 class="card-title">Free Test </h4></header>
+      <form action="{% url 'free-trial' %}" method="POST">
+        {% csrf_token %}
+
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label>full name</label>
+                {{ form.full_name }}
+             </div>
+        </div>
+        <!-- form-row end.// -->
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Email Address</label>
+            {{form.email}}
+          </div>
+          <!-- form-group end.// -->
+          <div class="form-group col-md-6">
+            <label>Phone Number</label>
+            {{form.phone}}
+          </div>
+          <!-- form-group end.// -->
+        </div>
+        <!-- form-row.// -->
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Country</label>
+            {{form.country}}
+          </div>
+          <!-- form-group end.// -->
+          <div class="form-group col-md-6">
+            <label> the type of your iptv device </label>
+            <select class="form-control" name="iptv_type">
+                <option> SMART TV </option>
+                <option> ANDROID BOX</option>
+                <option>M3U</option>
+                <option>MAG</option>
+                <option>Apple TV </option>
+                <option>PC / VLC</option>
+            </select>
+          </div>
+          <!-- form-group end.// -->
+        </div>
+        <!-- form-row.// -->
+
+        <div class="form-row">
+            <div>
+                <label>Chaines (+18)</label>
+                {{ form.option }}
+             </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Mac Adress </label>
+                {{ form.mac_address}}
+             </div>
+        </div>
+
+         <div class="form-row">
+            <div class="form-group col-md-12">
+                <label> votre message </label>
+                {{ form.message }}
+             </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">
+            Send
+          </button>
+        </div>
+        <!-- form-group// -->
+        {{ form.email.errors }} {{ form.non_field_errors }}
+      </form>
+    </article>
+    <!-- card-body.// -->
+  </div>
+  <!-- card .// -->
+  
+  <br /><br />
+  <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+</section>
+
+{% endblock %}
