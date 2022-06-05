@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-d5b&m+pen+zl2=$=1=o1*5ty3^0rlm^%8fq4cky3k$seb#9-0z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["ismail-test-1998.herokuapp.com"]
+ALLOWED_HOSTS = ["ismail-test-1998.herokuapp.com","127.0.0.1"]
 
 
 # Application definition
@@ -156,12 +156,12 @@ MESSAGE_TAGS = {
 }
 
 # SMTP configuration
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'ismaili.alaoui98@gmail.com'
-EMAIL_HOST_PASSWORD = 'BIGDATA2020'
-EMAIL_USE_TLS = True
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'ismaili.alaoui98@gmail.com'
+# EMAIL_HOST_PASSWORD = 'BIGDATA2020'
+# EMAIL_USE_TLS = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
